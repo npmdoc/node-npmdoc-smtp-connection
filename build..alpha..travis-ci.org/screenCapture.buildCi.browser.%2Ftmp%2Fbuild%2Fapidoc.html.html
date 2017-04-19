@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/andris9/smtp-connection"
-
-    >smtp-connection (v4.0.2)</a>
+    <a href="https://github.com/andris9/smtp-connection">smtp-connection (v4.0.2)</a>
 </h1>
 <h4>Connect to SMTP servers</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.smtp-connection">module smtp-connection</a><ol>
 
@@ -89,8 +82,8 @@
     constructor(options) {
         super(options);
 
-        this.id = crypto.randomBytes(8).toString(&#x27;base64&#x27;).replace(/\W/g, &#x27;&#x27;);
-        this.stage = &#x27;init&#x27;;
+        this.id = crypto.randomBytes(8).toString('base64').replace(/\W/g, '');
+        this.stage = 'init';
 
         this.options = options || {};
 
@@ -98,9 +91,9 @@
         this.alreadySecured = !!this.options.secured;
 
         this.port = this.options.port || (this.secureConnection ? 465 : 587);
-        this.host = this.options.host || &#x27;localhost&#x27;;
+        this.host = this.options.host || 'localhost';
 
-        if (typeof this.options.secure === &#x27;undefined&#x27; &#x26;&#x26; this.port === 465) {
+        if (typeof this.options.secure === 'undefined' &amp;&amp; this.port === 465) {
             // if secure option is not set but port is 465, then default to secure
             this.secureConnection = true;
         }
@@ -108,7 +101,7 @@
         this.name = this.options.name || this._getHostname();
 
         this.logger = shared.getLogger(this.options, {
-            component: this.options.component || &#x27;smtp-connection&#x27;,
+            component: this.options.component || 'smtp-connection',
             sid: this.id
         });
 
@@ -141,7 +134,7 @@
          * Store incomplete messages coming from the server
          * @private
          */
-        this._remainder = &#x27;&#x27;;
+        this._remainder = '';
 
         /**
          * Unprocessed responses from the server
@@ -218,11 +211,11 @@
      * listener
      */
     connect(connectCallback) {
-        if (typeof connectCallback === &#x27;function&#x27;) {
-            this.once(&#x27;connect&#x27;, () =&#x3e; {
+        if (typeof connectCallback === 'function') {
+            this.once('connect', () =&gt; {
                 this.logger.debug({
-                    tnx: &#x27;smtp&#x27;
-                }, &#x27;SMTP handshake finished&#x27;);
+                    tnx: 'smtp'
+                }, 'SMTP handshake finished');
                 connectCallback();
             });
         }
@@ -239,8 +232,8 @@
         if (this.options.connection) {
             // connection is already opened
             this._socket = this.options.connection;
-            if (this.secureConnection &#x26;&#x26; !this.alreadySecured) {
-                setImmediate(() =&#x3e; this._upgradeConnect ...</pre></li>
+            if (this.secureConnection &amp;&amp; !this.alreadySecured) {
+                setImmediate(() =&gt; this._upgradeConnect ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -253,3 +246,4 @@
     ]
 </div>
 </div>
+</body></html>

@@ -61,12 +61,189 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.smtp-connection">module smtp-connection</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.smtp-connection.smtp-connection">
+            function <span class="apidocSignatureSpan"></span>smtp-connection
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.smtp-connection" id="apidoc.module.smtp-connection">module smtp-connection</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.smtp-connection.smtp-connection" id="apidoc.element.smtp-connection.smtp-connection">
+        function <span class="apidocSignatureSpan"></span>smtp-connection
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class SMTPConnection extends EventEmitter {
+    constructor(options) {
+        super(options);
+
+        this.id = crypto.randomBytes(8).toString(&#x27;base64&#x27;).replace(/\W/g, &#x27;&#x27;);
+        this.stage = &#x27;init&#x27;;
+
+        this.options = options || {};
+
+        this.secureConnection = !!this.options.secure;
+        this.alreadySecured = !!this.options.secured;
+
+        this.port = this.options.port || (this.secureConnection ? 465 : 587);
+        this.host = this.options.host || &#x27;localhost&#x27;;
+
+        if (typeof this.options.secure === &#x27;undefined&#x27; &#x26;&#x26; this.port === 465) {
+            // if secure option is not set but port is 465, then default to secure
+            this.secureConnection = true;
+        }
+
+        this.name = this.options.name || this._getHostname();
+
+        this.logger = shared.getLogger(this.options, {
+            component: this.options.component || &#x27;smtp-connection&#x27;,
+            sid: this.id
+        });
+
+<span class="apidocCodeCommentSpan">        /**
+         * Expose version nr, just for the reference
+         * @type {String}
+         */
+</span>        this.version = packageInfo.version;
+
+        /**
+         * If true, then the user is authenticated
+         * @type {Boolean}
+         */
+        this.authenticated = false;
+
+        /**
+         * If set to true, this instance is no longer active
+         * @private
+         */
+        this.destroyed = false;
+
+        /**
+         * Defines if the current connection is secure or not. If not,
+         * STARTTLS can be used if available
+         * @private
+         */
+        this.secure = !!this.secureConnection;
+
+        /**
+         * Store incomplete messages coming from the server
+         * @private
+         */
+        this._remainder = &#x27;&#x27;;
+
+        /**
+         * Unprocessed responses from the server
+         * @type {Array}
+         */
+        this._responseQueue = [];
+
+        this.lastServerResponse = false;
+
+        /**
+         * The socket connecting to the server
+         * @publick
+         */
+        this._socket = false;
+
+        /**
+         * Lists supported auth mechanisms
+         * @private
+         */
+        this._supportedAuth = [];
+
+        /**
+         * Includes current envelope (from, to)
+         * @private
+         */
+        this._envelope = false;
+
+        /**
+         * Lists supported extensions
+         * @private
+         */
+        this._supportedExtensions = [];
+
+        /**
+         * Defines the maximum allowed size for a single message
+         * @private
+         */
+        this._maxAllowedSize = 0;
+
+        /**
+         * Function queue to run if a data chunk comes from the server
+         * @private
+         */
+        this._responseActions = [];
+        this._recipientQueue = [];
+
+        /**
+         * Timeout variable for waiting the greeting
+         * @private
+         */
+        this._greetingTimeout = false;
+
+        /**
+         * Timeout variable for waiting the connection to start
+         * @private
+         */
+        this._connectionTimeout = false;
+
+        /**
+         * If the socket is deemed already closed
+         * @private
+         */
+        this._destroyed = false;
+
+        /**
+         * If the socket is already being closed
+         * @private
+         */
+        this._closing = false;
+    }
+
+    /**
+     * Creates a connection to a SMTP server and sets up connection
+     * listener
+     */
+    connect(connectCallback) {
+        if (typeof connectCallback === &#x27;function&#x27;) {
+            this.once(&#x27;connect&#x27;, () =&#x3e; {
+                this.logger.debug({
+                    tnx: &#x27;smtp&#x27;
+                }, &#x27;SMTP handshake finished&#x27;);
+                connectCallback();
+            });
+        }
+
+        let opts = {
+            port: this.port,
+            host: this.host
+        };
+
+        if (this.options.localAddress) {
+            opts.localAddress = this.options.localAddress;
+        }
+
+        if (this.options.connection) {
+            // connection is already opened
+            this._socket = this.options.connection;
+            if (this.secureConnection &#x26;&#x26; !this.alreadySecured) {
+                setImmediate(() =&#x3e; this._upgradeConnect ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 

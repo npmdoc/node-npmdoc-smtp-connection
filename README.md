@@ -1,9 +1,14 @@
-# api documentation for  [smtp-connection (v4.0.2)](https://github.com/andris9/smtp-connection)  [![npm package](https://img.shields.io/npm/v/npmdoc-smtp-connection.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-smtp-connection) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-smtp-connection.svg)](https://travis-ci.org/npmdoc/node-npmdoc-smtp-connection)
+# npmdoc-smtp-connection
+
+#### api documentation for  [smtp-connection (v4.0.2)](https://github.com/andris9/smtp-connection)  [![npm package](https://img.shields.io/npm/v/npmdoc-smtp-connection.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-smtp-connection) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-smtp-connection.svg)](https://travis-ci.org/npmdoc/node-npmdoc-smtp-connection)
+
 #### Connect to SMTP servers
 
-[![NPM](https://nodei.co/npm/smtp-connection.png?downloads=true)](https://www.npmjs.com/package/smtp-connection)
+[![NPM](https://nodei.co/npm/smtp-connection.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/smtp-connection)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-smtp-connection/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-smtp-connection_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-smtp-connection/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-smtp-connection/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-smtp-connection/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-smtp-connection/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-smtp-connection/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-smtp-connection/build/screenCapture.npmPackageListing.svg)
 
@@ -55,13 +60,11 @@
     "main": "lib/smtp-connection.js",
     "maintainers": [
         {
-            "name": "andris",
-            "email": "andris@node.ee"
+            "name": "andris"
         }
     ],
     "name": "smtp-connection",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/andris9/smtp-connection.git"
@@ -72,16 +75,6 @@
     "version": "4.0.2"
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module smtp-connection](#apidoc.module.smtp-connection)
-
-
-
-# <a name="apidoc.module.smtp-connection"></a>[module smtp-connection](#apidoc.module.smtp-connection)
 
 
 
